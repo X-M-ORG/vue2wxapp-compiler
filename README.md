@@ -10,8 +10,13 @@
 
 **index.vue**
 
-```html
-<json> { "usingComponents": {}, "disableScroll": true } </json>
+```vue
+<json>
+{
+  "usingComponents": {},
+  "disableScroll": true
+}
+</json>
 
 <template>
   <page>
@@ -21,17 +26,17 @@
 </template>
 
 <script>
-  // 这是小程序的 JS
-  Page({
-    data: {
-      title: '这是小程序的 wxml'
-    }
-  })
+// 这是小程序的 JS
+Page({
+  data: {
+    title: '这是小程序的 wxml'
+  }
+})
 </script>
 
 <style lang="stylus">
-  .title
-    color red
+.title
+  color red
 </style>
 ```
 
@@ -67,7 +72,8 @@ Page({
 **index.wxml**
 
 ```html
-<view class="title">这是小程序的 wxml</view> <view class="title">{{ title }}</view>
+<view class="title">这是小程序的 wxml</view>
+<view class="title">{{ title }}</view>
 ```
 
 **index.wxss**
