@@ -1,0 +1,26 @@
+{
+  "name": "vue2wxapp-compiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-watch": "^5.0.1"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.8"
+  },
+  "scripts": {
+    "dev": "node node_modules/gulp/bin/gulp.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/X-M-ORG/vue2wxapp-compiler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/X-M-ORG/vue2wxapp-compiler/issues"
+  },
+  "homepage": "https://github.com/X-M-ORG/vue2wxapp-compiler#readme"
+}
