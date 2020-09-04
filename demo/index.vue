@@ -21,7 +21,8 @@ Page({
 })
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 .title
-  color red
+  color: red
+  font-size: 14px
 </style>

@@ -3,6 +3,7 @@ const watch = require('gulp-watch')
 
 const fs = require('fs')
 const stylus = require('stylus')
+const sass = require('sass')
 
 // 匹配标签内容
 function matchTag(content, tag) {
@@ -51,16 +52,33 @@ function compiler(path, content) {
   createdFile(path, '.js', matchTag(content, 'script').txt)
   createdFile(path, '.json', matchTag(content, 'json').txt)
 
-  if (wxss.options.lang === 'stylus') {
-    stylus.render(wxss.txt, function (err, css) {
-      if (err) {
-        throw err
-      } else {
-        createdFile(path, '.wxss', css)
-      }
-    })
-  } else {
-    createdFile(path, '.wxss', wxss.txt)
+  switch (wxss.options.lang) {
+    case 'stylus': {
+      stylus.render(wxss.txt, function (err, css) {
+        if (err) {
+          throw err
+        } else {
+          createdFile(path, '.wxss', css)
+        }
+      })
+      break
+    }
+
+    case 'sass':
+    case 'scss': {
+      sass.render({ data: wxss.txt, indentedSyntax: wxss.options.lang === 'sass' }, function (err, result) {
+        if (err) {
+          throw err
+        } else {
+          createdFile(path, '.wxss', result.css.toString())
+        }
+      })
+      break
+    }
+
+    default: {
+      createdFile(path, '.wxss', wxss.txt)
+    }
   }
 }
 
