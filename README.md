@@ -71,8 +71,9 @@ Page({
 
 **index.wxml**
 
-```html
-<view class="title">这是小程序的 wxml</view> <view class="title">{{ title }}</view>
+```
+<view class="title">这是小程序的 wxml</view>
+<view class="title">{{ title }}</view>
 ```
 
 **index.wxss**
