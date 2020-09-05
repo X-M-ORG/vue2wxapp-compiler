@@ -87,22 +87,34 @@ Page({
 ## 使用
 
 1. 拷贝此项目根目录下的 gulpfile.js 至你的项目中
-2. npm i gulp gulp-watch stylus -D
+2. npm i gulp gulp-watch stylus sass -D
 3. node node_modules/gulp/bin/gulp.js
 4. 创建 .vue 文件
 
-为避免小程序上传 .vue 文件，可以给小程序的 project.config.json 添加配置，忽略 .vue 文件上传
+为避免小程序上传 .vue 文件，可以给小程序的 project.config.json 添加配置，忽略 .vue 文件和 node_modules 上传
 
 ```json
 {
   "description": "项目配置文件",
   "packOptions": {
     "ignore": [
-      {
-        "type": "suffix",
-        "value": ".vue"
-      }
-    ]
+			{
+				"type": "file",
+				"value": "package.json"
+			},
+			{
+				"type": "file",
+				"value": "package-lock.json"
+			},
+			{
+				"type": "folder",
+				"value": "node_modules"
+			},
+			{
+				"type": "suffix",
+				"value": ".vue"
+			}
+		]
   }
 }
 ```

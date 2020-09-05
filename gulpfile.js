@@ -26,8 +26,8 @@ function matchTag(content, tag) {
     }, {})
 
   if (txt.match(/^\n(\s)*/)) {
-    let first = txt.match(/^\n(\s)*/)[0]
-    let reg2 = new RegExp(first.replace(/\n/, '\\n').replace(/\s/g, '\\s'), 'g')
+    const first = txt.match(/^\n(\s)*/)[0]
+    const reg2 = new RegExp(first.replace(/\n/, '\\n').replace(/\s/g, '\\s'), 'g')
     txt = txt.replace(reg2, '\n').replace(/^\n/, '')
   }
 
@@ -54,7 +54,7 @@ function compiler(path, content) {
 
   switch (wxss.options.lang) {
     case 'stylus': {
-      stylus.render(wxss.txt, function (err, css) {
+      stylus.render(wxss.txt, (err, css) => {
         if (err) {
           throw err
         } else {
@@ -66,7 +66,7 @@ function compiler(path, content) {
 
     case 'sass':
     case 'scss': {
-      sass.render({ data: wxss.txt, indentedSyntax: wxss.options.lang === 'sass' }, function (err, result) {
+      sass.render({ data: wxss.txt, indentedSyntax: wxss.options.lang === 'sass' }, (err, result) => {
         if (err) {
           throw err
         } else {
@@ -82,8 +82,8 @@ function compiler(path, content) {
   }
 }
 
-gulp.task('default', function () {
-  watch('**/*.vue', function (file) {
+gulp.task('default', () => {
+  watch('**/*.vue', (file) => {
     if (file.event === 'change') {
       compiler(file.path, file.contents.toString())
     }
