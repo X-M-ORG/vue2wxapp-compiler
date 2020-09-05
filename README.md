@@ -98,23 +98,23 @@ Page({
   "description": "项目配置文件",
   "packOptions": {
     "ignore": [
-			{
-				"type": "file",
-				"value": "package.json"
-			},
-			{
-				"type": "file",
-				"value": "package-lock.json"
-			},
-			{
-				"type": "folder",
-				"value": "node_modules"
-			},
-			{
-				"type": "suffix",
-				"value": ".vue"
-			}
-		]
+      {
+        "type": "file",
+        "value": "package.json"
+      },
+      {
+        "type": "file",
+        "value": "package-lock.json"
+      },
+      {
+        "type": "folder",
+        "value": "node_modules"
+      },
+      {
+        "type": "suffix",
+        "value": ".vue"
+      }
+    ]
   }
 }
 ```
