@@ -4,9 +4,9 @@
 
 使用 uniapp 和 mpvue 这种编译性的框架限制和效率太低，所以写了个小工具来辅助一下开发。
 
-## 功能示例
+## 功能
 
-可以在页面中使用 .vue 文件开发：
+如 demo3，可以在页面中使用 .vue 文件开发：
 
 **index.vue**
 
@@ -47,12 +47,15 @@ Page({
 - index.wxml
 - index.wxss
 
+> 可以在 gulpfile.js 指定 outputPath 和 codePath ，指定 vue 的目录和输出目录，这样就可以分离 vue 文件和小程序文件了，如 demo 1、2
+
 相应内容如下：
 
 **index.wxml**
 
-```html
-<view class="title">这是小程序的 wxml</view> <view class="title">{{ title }}</view>
+```
+<view class="title">这是小程序的 wxml</view>
+<view class="title">{{ title }}</view>
 ```
 
 **index.js**

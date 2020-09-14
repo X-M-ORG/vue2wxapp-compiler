@@ -1,0 +1,3 @@
+<view class="title">Demo3：这是小程序的 wxml</view>
+<view class="title">{{ title }}</view>
+  

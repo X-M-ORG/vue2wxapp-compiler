@@ -7,8 +7,8 @@ const pug = require('pug')
 const stylus = require('stylus')
 const sass = require('sass')
 
-const outputPath = ''
-const codeFolder = ''
+const outputPath = 'pages'
+const codePath = 'src'
 
 /*
   匹配
@@ -59,8 +59,8 @@ function createdFile(path, suffix, content) {
 
   let filePath = path.replace('.vue', suffix)
 
-  if (outputPath && codeFolder && outputPath !== codeFolder) {
-    filePath = filePath.replace(`${__dirname}/${codeFolder}`, `${__dirname}/${outputPath}`)
+  if (outputPath && codePath && outputPath !== codePath) {
+    filePath = filePath.replace(`${__dirname}/${codePath}`, `${__dirname}/${outputPath}`)
   }
 
   fs.existsSync(filePath) || mkdir(filePath)
