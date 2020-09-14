@@ -7,7 +7,12 @@ const pug = require('pug')
 const stylus = require('stylus')
 const sass = require('sass')
 
-// 匹配标签内容
+const outputPath = ''
+const codeFolder = ''
+
+/*
+  匹配
+*/
 function matchTag(content, tag) {
   const reg = new RegExp(`<${tag}(.*)>([\\\d\\\D]*)</${tag}>`)
 
@@ -44,16 +49,46 @@ function matchTag(content, tag) {
   return { options, txt }
 }
 
-// 创建文件
+/*
+  创建文件
+*/
 function createdFile(path, suffix, content) {
   if (!content) {
     return
   }
 
-  const filePath = path.replace('.vue', suffix)
+  let filePath = path.replace('.vue', suffix)
+
+  if (outputPath && codeFolder && outputPath !== codeFolder) {
+    filePath = filePath.replace(`${__dirname}/${codeFolder}`, `${__dirname}/${outputPath}`)
+  }
+
+  fs.existsSync(filePath) || mkdir(filePath)
+
   fs.writeFile(filePath, content, 'utf8', () => {})
 }
+function mkdir(filePath) {
+  let basePath = __dirname
 
+  const paths = filePath.replace(basePath, '').split('/').filter(Boolean)
+  paths.pop()
+
+  for (let path of paths) {
+    basePath += '/' + path
+    fs.existsSync(basePath) || fs.mkdirSync(basePath)
+  }
+}
+
+/*
+  编译
+*/
+function compiler(path, content) {
+  createdFile(path, '.js', matchTag(content, 'script').txt)
+  createdFile(path, '.json', matchTag(content, 'json').txt)
+
+  compilerPage({ path, content })
+  compilerStyle({ path, content })
+}
 function compilerPage({ path, content }) {
   let { options, txt } = matchTag(content, 'page')
   if (!txt) {
@@ -73,7 +108,6 @@ function compilerPage({ path, content }) {
     }
   }
 }
-
 function compilerStyle({ path, content }) {
   const { options, txt } = matchTag(content, 'style')
 
@@ -107,15 +141,7 @@ function compilerStyle({ path, content }) {
   }
 }
 
-// 编译文件
-function compiler(path, content) {
-  createdFile(path, '.js', matchTag(content, 'script').txt)
-  createdFile(path, '.json', matchTag(content, 'json').txt)
-
-  compilerPage({ path, content })
-  compilerStyle({ path, content })
-}
-
+// 任务流
 gulp.task('default', () => {
   watch('**/*.vue', (file) => {
     if (file.event === 'change') {
