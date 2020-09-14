@@ -11,18 +11,10 @@
 **index.vue**
 
 ```vue
-<json>
-{
-  "usingComponents": {},
-  "disableScroll": true
-}
-</json>
-
-<template>
-  <page>
-    <view class="title">这是小程序的 wxml</view>
-    <view class="title">{{ title }}</view>
-  </page>
+<template lang="pug">
+  page
+    view.title 这是小程序的 wxml
+    view.title {{ title }}
 </template>
 
 <script>
@@ -34,10 +26,18 @@ Page({
 })
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 .title
-  color red
+  color: red
+  font-size: 14px
 </style>
+
+<json>
+{
+  "usingComponents": {},
+  "disableScroll": true
+}
+</json>
 ```
 
 编译后，在 index.vue 的同级目录会生成：
@@ -49,13 +49,10 @@ Page({
 
 相应内容如下：
 
-**index.json**
+**index.wxml**
 
-```json
-{
-  "usingComponents": {},
-  "disableScroll": true
-}
+```html
+<view class="title">这是小程序的 wxml</view> <view class="title">{{ title }}</view>
 ```
 
 **index.js**
@@ -69,25 +66,33 @@ Page({
 })
 ```
 
-**index.wxml**
-
-```html
-<view class="title">这是小程序的 wxml</view>
-<view class="title">{{ title }}</view>
-```
-
 **index.wxss**
 
 ```css
 .title {
-  color: #f00;
+  color: red;
+  font-size: 14px;
 }
 ```
+
+**index.json**
+
+```json
+{
+  "usingComponents": {},
+  "disableScroll": true
+}
+```
+
+## 支持
+
+- template: html、pug
+- style: css、sass、stylus
 
 ## 使用
 
 1. 拷贝此项目根目录下的 gulpfile.js 至你的项目中
-2. npm i gulp gulp-watch stylus sass -D
+2. npm i gulp gulp-watch stylus sass -D （可以根据项目需求进行拷贝使用）
 3. node node_modules/gulp/bin/gulp.js
 4. 创建 .vue 文件
 
@@ -118,8 +123,6 @@ Page({
   }
 }
 ```
-
-> .vue 文件的 style 支持：默认 css、 stylus、sass、scss
 
 ## 缺陷 or 限制
 

@@ -2,6 +2,8 @@ const gulp = require('gulp')
 const watch = require('gulp-watch')
 
 const fs = require('fs')
+
+const pug = require('pug')
 const stylus = require('stylus')
 const sass = require('sass')
 
@@ -25,10 +27,18 @@ function matchTag(content, tag) {
       return opt
     }, {})
 
-  if (txt.match(/^\n(\s)*/)) {
-    const first = txt.match(/^\n(\s)*/)[0]
-    const reg2 = new RegExp(first.replace(/\n/, '\\n').replace(/\s/g, '\\s'), 'g')
-    txt = txt.replace(reg2, '\n').replace(/^\n/, '')
+  if (options.lang === 'pug') {
+    txt = txt.replace(/^\n/, '')
+    const first = txt.match(/^(\s)*/)[0]
+    if (first.length) {
+      txt = 'template\n' + txt
+    }
+  } else {
+    if (txt.match(/^\n(\s)*/)) {
+      const first = txt.match(/^\n(\s)*/)[0]
+      const reg2 = new RegExp(first.replace(/\n/, '\\n').replace(/\s/g, '\\s'), 'g')
+      txt = txt.replace(reg2, '\n').replace(/^\n/, '')
+    }
   }
 
   return { options, txt }
@@ -44,17 +54,32 @@ function createdFile(path, suffix, content) {
   fs.writeFile(filePath, content, 'utf8', () => {})
 }
 
-// 编译文件
-function compiler(path, content) {
-  const wxss = matchTag(content, 'style')
+function compilerPage({ path, content }) {
+  let { options, txt } = matchTag(content, 'page')
+  if (!txt) {
+    ;({ options, txt } = matchTag(content, 'template'))
+  }
 
-  createdFile(path, '.wxml', matchTag(content, 'page').txt)
-  createdFile(path, '.js', matchTag(content, 'script').txt)
-  createdFile(path, '.json', matchTag(content, 'json').txt)
+  switch (options.lang) {
+    case 'pug': {
+      const pageStr = pug.render(txt, { pretty: true })
+      const { txt: wxml } = matchTag(pageStr, 'page')
+      createdFile(path, '.wxml', wxml)
+      break
+    }
 
-  switch (wxss.options.lang) {
+    default: {
+      createdFile(path, '.wxml', txt)
+    }
+  }
+}
+
+function compilerStyle({ path, content }) {
+  const { options, txt } = matchTag(content, 'style')
+
+  switch (options.lang) {
     case 'stylus': {
-      stylus.render(wxss.txt, (err, css) => {
+      stylus.render(txt, (err, css) => {
         if (err) {
           throw err
         } else {
@@ -66,7 +91,7 @@ function compiler(path, content) {
 
     case 'sass':
     case 'scss': {
-      sass.render({ data: wxss.txt, indentedSyntax: wxss.options.lang === 'sass' }, (err, result) => {
+      sass.render({ data: txt, indentedSyntax: options.lang === 'sass' }, (err, result) => {
         if (err) {
           throw err
         } else {
@@ -77,9 +102,18 @@ function compiler(path, content) {
     }
 
     default: {
-      createdFile(path, '.wxss', wxss.txt)
+      createdFile(path, '.wxss', txt)
     }
   }
+}
+
+// 编译文件
+function compiler(path, content) {
+  createdFile(path, '.js', matchTag(content, 'script').txt)
+  createdFile(path, '.json', matchTag(content, 'json').txt)
+
+  compilerPage({ path, content })
+  compilerStyle({ path, content })
 }
 
 gulp.task('default', () => {

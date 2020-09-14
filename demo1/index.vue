@@ -1,10 +1,3 @@
-<json>
-{
-  "usingComponents": {},
-  "disableScroll": true
-}
-</json>
-
 <template>
   <page>
     <view class="title">这是小程序的 wxml</view>
@@ -21,8 +14,15 @@ Page({
 })
 </script>
 
-<style lang="sass">
-.title
-  color: red
-  font-size: 14px
+<style>
+.title {
+  color: red;
+}
 </style>
+
+<json>
+{
+  "usingComponents": {},
+  "disableScroll": true
+}
+</json>
