@@ -1,12 +1,13 @@
 const fs = require('fs')
+const path = require('path')
 
-function createdFile(path, content) {
+function createdFile(savePath, content) {
   if (!content) {
     return
   }
 
-  fs.existsSync(path) || mkdir(path)
-  fs.writeFileSync(path, content, 'utf8', () => {})
+  fs.existsSync(savePath) || mkdir(savePath)
+  fs.writeFileSync(savePath, content, 'utf8', () => {})
 }
 function mkdir(filePath) {
   let basePath = path.resolve(__dirname, '../../')

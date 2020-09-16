@@ -59,7 +59,9 @@ Page({
 - index.wxml
 - index.wxss
 
-> 可以在 build/config.js 指定 outputPath 和 codePath ，指定 vue 的目录和输出目录，这样就可以分离 vue 文件和小程序文件了，如 demo 1、2
+> 可以在 build/config.js 指定 outputPath 和 codePath ，指定 vue 的目录和输出目录，这样就可以分离 vue 文件和小程序文件
+
+> 非 codePath 目录下的 vue 文件，依旧会在同级目录下生成
 
 相应内容如下：
 
