@@ -13,7 +13,6 @@
 
 - build 目录：编译工具的目录
 - src 目录：目录结构与 pages 相似，vue 文件所在目录
-- gulpfile.js 文件：gulp 配置文件
 
 ## 功能
 
@@ -104,9 +103,9 @@ Page({
 
 ## 使用
 
-1. 拷贝此项目根目录下的 build 文件夹和 gulpfile.js 至你的项目中
-2. npm i gulp gulp-watch stylus sass pug ali-oss -D （可以根据项目需求进行拷贝使用）
-3. node node_modules/gulp/bin/gulp.js
+1. 拷贝此项目根目录下的 build 文件夹至你的项目中
+2. npm i stylus sass pug ali-oss -D （可以根据项目需求进行拷贝使用）
+3. node build/watch.js
 
 为避免小程序上传 .vue 文件，可以给小程序的 project.config.json 添加配置，忽略 .vue 文件和 node_modules 上传
 

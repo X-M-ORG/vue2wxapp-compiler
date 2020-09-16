@@ -1,11 +1,9 @@
 {
   "scripts": {
-    "dev": "node node_modules/gulp/bin/gulp.js"
+    "dev": "node build/watch.js"
   },
   "devDependencies": {
     "ali-oss": "^6.10.0",
-    "gulp": "^4.0.2",
-    "gulp-watch": "^5.0.1",
     "pug": "^3.0.0",
     "sass": "^1.26.10",
     "stylus": "^0.54.8"
