@@ -1,0 +1,1 @@
+module.exports = {"b5663a00b30942c4c2e3427120864a26":"http://tlr-test.oss-cn-shenzhen.aliyuncs.com/drawing/b5663a00b30942c4c2e3427120864a26.png","/assets/wepie/bg.png":"http://tlr-test.oss-cn-shenzhen.aliyuncs.com/drawing/b5663a00b30942c4c2e3427120864a26.png","/assets/index2/bg.png":"http://tlr-test.oss-cn-shenzhen.aliyuncs.com/drawing/b5663a00b30942c4c2e3427120864a26.png"}
