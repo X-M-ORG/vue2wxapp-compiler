@@ -1,7 +1,28 @@
 {
   "description": "项目配置文件",
   "packOptions": {
-    "ignore": []
+    "ignore": [
+      {
+        "type": "file",
+        "value": "package.json"
+      },
+      {
+        "type": "file",
+        "value": "package-lock.json"
+      },
+      {
+        "type": "folder",
+        "value": "node_modules"
+      },
+      {
+        "type": "folder",
+        "value": "build"
+      },
+      {
+        "type": "suffix",
+        "value": ".vue"
+      }
+    ]
   },
   "setting": {
     "urlCheck": true,
@@ -21,7 +42,7 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -36,7 +57,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.12.2",
-  "appid": "wxbf7a34b24309fcb4",
+  "appid": "wx17e25e2e96169cd1",
   "projectname": "%E4%BD%A0%E7%94%BB%E6%88%91%E7%8C%9C%E9%87%8D%E6%9E%84",
   "debugOptions": {
     "hidedInDevtools": []
