@@ -6,7 +6,7 @@ module.exports = {
   codePath: 'src',
 
   // 是否将静态资源上传至 CDN
-  assets2cdn: true,
+  assets2cdn: false,
 
   // CDN 的目录
   cdnDirname: 'drawing',
